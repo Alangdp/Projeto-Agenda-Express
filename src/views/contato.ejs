@@ -1,0 +1,50 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h1 class="display-1 text-center">Contato</h1>
+      <p class="text-center lead">Crie ou edite seu contato abaixo.</p>
+
+      <%- include('includes/messages') %> 
+
+      <% if(contato._id) { %> 
+        <form action="/contato/edit/<%=contato._id%>" method="POST">
+      <% } else { %>
+        <form action="/contato/register" method="POST">
+      <% } %>  
+        <input type="hidden" name="__csrf" value=<%= csrfToken %>>
+
+        <div class="form-group my-3">
+          <label for="exampleInputEmail1">Nome</label class="my-3">
+          <input type="text" value="<%=contato.nome %> " class="form-control" placeholder="nome" name="nome" placeholder="José">
+        </div>
+
+        <div class="form-group my-3">
+          <label for="exampleInputEmail1">Sobrenome</label class="my-3">
+          <input type="text" class="form-control" value="<%=contato.sobrenome %>" placeholder="sobrenome" name="sobrenome" placeholder="José">
+        </div>
+
+        <div class="form-group my-3">
+          <label for="exampleInputEmail1">Email</label class="my-3">
+          <input type="email" class="form-control" value="<%=contato.email %>" placeholder="email" name="email" placeholder="José">
+        </div>
+
+        <div class="form-group my-3">
+          <label for="exampleInputEmail1">Telefone</label class="my-3">
+          <input type="tel" class="form-control" value="<%=contato.telefone %>" placeholder="email" name="telefone" placeholder="José">
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary d-flex justify-content-cente">Salvar</button>
+      </form>
+      
+
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<%- include('includes/footer'); %>

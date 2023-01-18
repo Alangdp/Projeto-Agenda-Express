@@ -1,0 +1,70 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+  <% if(!user) {%> 
+
+      <div class="col-lg-8 my-3">
+        <h1 class="display-1 text-center">Criar conta ou entrar</h1>
+        <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
+
+        <%- include('includes/messages') %>
+        
+        <div class="row text-center align-middle">
+          <div class="col-lg">
+            <h4>Faça seu cadastro</h4>
+            <p>Se você não tem conta preencha o formulário abaixo:</p>
+            <form action="/login/register" method="POST" class="formRegister">
+              <input type="hidden" name="__csrf" value=<%= csrfToken %>>
+              <div class="form-group my-3">
+                <label for="exampleInputEmail1">Seu email</label class="my-3">
+                <input type="email" class="form-control" placeholder="email" name="email" placeholder="Email@email.com">
+              </div>
+              
+              <div class="form-group my-3">
+                <label for="exampleInputEmail1">Sua senha</label class="my-3">
+                <input type="password" class="form-control" placeholder="Senha" name="password">
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Criar minha conta</button>
+            </form>
+          </div>
+
+          <div class="col-lg">
+            <h4>Entrar no sistema</h4>
+            <div class="col-lg">
+              <p>Se você já tem conta faça o login abaixo:</p>
+              <form action="/login/login" method="POST" class="formLogin">
+                <input type="hidden" name="__csrf" value=<%= csrfToken %>>
+                <div class="form-group my-3">
+                  <label for="exampleInputEmail1">Seu email</label class="my-3">
+                  <input type="email" class="form-control" placeholder="email" name="email" placeholder="Email@email.com">
+                </div>
+    
+                <div class="form-group my-3">
+                  <label for="exampleInputEmail1">Sua senha</label class="my-3">
+                  <input type="password" class="form-control" placeholder="Senha" name="password" >
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-2"></div>
+    </div>
+  <% } else { %> 
+    <div class="col-lg">
+      <%- include('includes/messages') %>
+      <div class="alert alert-warning text-center lead"><h1>Olá <%=user.email %></h1></div>
+      <div class="alert alert-warning text-center lead"><h1>Você precisa sair para criar outra conta.</h1></div>
+    </div>
+  <% } %> 
+</div>
+<%- include('includes/footer'); %>

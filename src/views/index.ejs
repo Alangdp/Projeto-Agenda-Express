@@ -1,17 +1,43 @@
+<%- include('includes/head'); %>
+<%- include('includes/nav'); %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
 
-<%- include('includes/head')%>
+    <div class="col-lg-8 my-3">
+      <h1 class="display-1 text-center">Agenda</h1>
+      <p class="text-center lead">Seus estão abaixo contos estão abaixo</p>
 
-<body>
-  <section class="container">
-    <h1> Lorem Normal
-
-    </h1>
-    <form action="/" method="post">
-      <input type="hidden" name="_csrf" value="<%= csrfToken%>">
-      <label for="">Cliente</label>
-      <input type="text" name="nome">
-    </form>
-  </section>
+      <%- include('includes/messages') %>
 
 
-<%- include('includes/footer')%>
+      <div class="responsive-table">
+
+        <% if (contatos.length === 0) { %>
+          <h2 class="text-danger text-center"> Não há contatos registrados.</h2>
+        <% } else {%>
+          <table class="table my-3">
+            <% contatos.forEach(contato => { %>
+              <tr>
+                <td><%= contato.nome %></td>
+                <td><%= contato.sobrenome %></td>
+                <td><%= contato.telefone %></td>
+                <td><%= contato.email %></td>
+    
+                <td>
+                  <button type="button" class="btn btn-primary"><a href="/contato/index/<%=contato.id%>" style="color:white;">Editar</a></button>
+                  <button type="button" class="btn btn-danger" ><a href="/contato/delete/<%=contato.id%>" style="color:white;">Apagar</a></button>
+                </td>
+              </tr>
+            <% }) %>
+          </table>
+        <% } %> 
+
+      </div>
+
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<%- include('includes/footer'); %>

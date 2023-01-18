@@ -1,2 +1,10 @@
+import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import './assets/css/style.css';
+
+import Login from '../frontend/assets/modules/Login'
+
+
+const registro = new Login('formRegister')
+const login = new Login('formLogin')
+
+console.log('Olá mundo 3');
